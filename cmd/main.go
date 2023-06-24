@@ -8,7 +8,7 @@ import (
 	"totraz_store/internal/repository/product"
 	"totraz_store/internal/repository/store"
 	productUsecase "totraz_store/internal/usecase/product"
-	store2 "totraz_store/internal/usecase/store"
+	storeUsecase "totraz_store/internal/usecase/store"
 	"totraz_store/pkg/config"
 	"totraz_store/pkg/store/postgres"
 )
@@ -29,7 +29,7 @@ func main() {
 	imageRepo := images.NewImageRepository(db)
 
 	productUseCase := productUsecase.NewProductManager(productRepo, imageRepo)
-	storeUseCase := store2.NewStoreManager(storeRepo, imageRepo)
+	storeUseCase := storeUsecase.NewStoreManager(storeRepo, imageRepo)
 
 	server := http.NewServer(cfg.HTTP, productUseCase, storeUseCase)
 
